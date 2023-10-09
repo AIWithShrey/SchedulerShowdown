@@ -203,7 +203,7 @@ int main(int argc, char* argv[])
 	//     Also	calculate the average normalized turnaround time for the run (use the variable declared 
 	//     here to store the result).
 	float averageNormTurnTime = 0.0;
-    for (int i = 0; i < procList.size(); i++) {
+    for (unsigned int i = 0; i < procList.size(); i++) {
         Process& proc = procList[i];
         proc.turnaroundTime = proc.timeFinished - proc.startTime;
         proc.normalizedTurnaroundTime = proc.turnaroundTime / proc.totalTimeNeeded;
