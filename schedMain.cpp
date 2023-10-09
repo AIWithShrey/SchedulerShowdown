@@ -107,7 +107,7 @@ int main(int argc, char* argv[])
                 // TODO set procIdx to the proper index for the next process to be scheduled using SPN
 
 				//////////////////////////////
-
+                procIdx = ShortestProcessNext(curTime, procList, timeQuantum);
                 break;
 
             //Shortest Remaining Time
@@ -117,7 +117,7 @@ int main(int argc, char* argv[])
                 // TODO set procIdx to the proper index for the next process to be scheduled using SRT
 
 				//////////////////////////////
-
+                procIdx = ShortestRemainingTime(curTime, procList, timeQuantum);
                 break;
 
             //Highest Response Ratio Next
@@ -127,7 +127,7 @@ int main(int argc, char* argv[])
                 // TODO set procIdx to the proper index for the next process to be scheduled using HRRN
 
 				//////////////////////////////
-
+                procIdx = HighestResponseRatioNext(curTime, procList, timeQuantum);
                 break;
         }
 
@@ -203,7 +203,7 @@ int main(int argc, char* argv[])
 	//     Also	calculate the average normalized turnaround time for the run (use the variable declared 
 	//     here to store the result).
 	float averageNormTurnTime = 0.0;
-
+    
 	/////////////////////////////////////
 
 
