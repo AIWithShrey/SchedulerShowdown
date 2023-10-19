@@ -80,7 +80,7 @@ int ShortestProcessNext(const int& curTime, vector<Process>& procList, const int
     }
     curRunning = shortestIndex;
 
-    return shortestIndex;
+    return curRunning;
 }
 
 //Shortest Remaining Time scheduler implementation. In general, this function maintains a double ended queue
