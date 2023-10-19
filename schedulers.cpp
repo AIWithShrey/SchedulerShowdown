@@ -1,4 +1,5 @@
 #include "schedulers.h"
+#include <climits>
 
 
 //Round Robin scheduler implementation. In general, this function maintains a double ended queue
@@ -66,7 +67,7 @@ int RoundRobin(const int& curTime, const vector<Process>& procList, const int& t
 int ShortestProcessNext(const int& curTime, vector<Process>& procList, const int& timeQuantum) {
     int shortestIndex = -1;
     int shortestBurst = INT_MAX;
-    for (int i = 0; i < procList.size(); i++) {
+    for (size_t i = 0; i < procList.size(); i++) {
         if (procList[i].startTime <= curTime && !procList[i].isDone && procList[i].totalTimeNeeded < shortestBurst) {
             shortestIndex = i;
             shortestBurst = procList[i].totalTimeNeeded;
