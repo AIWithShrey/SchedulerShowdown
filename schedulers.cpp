@@ -80,7 +80,7 @@ int ShortestProcessNext(const int& curTime, vector<Process>& procList) {
                 shortestBurst = procList[i].totalTimeNeeded;
             }
         }
-    cerr << shortestIndex << endl;
+    //cerr << shortestIndex << endl;
 
     curRunning = shortestIndex;
 
