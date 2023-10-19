@@ -1,4 +1,5 @@
 #include "schedulers.h"
+#define INT_MAX 2147483647
 
 //Round Robin scheduler implementation. In general, this function maintains a double ended queue
 //of processes that are candidates for scheduling (the ready variable) and always schedules
