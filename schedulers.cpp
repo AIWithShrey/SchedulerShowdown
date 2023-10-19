@@ -64,21 +64,19 @@ int RoundRobin(const int& curTime, const vector<Process>& procList, const int& t
 //Shortest Process Next scheduler implementation. In general, this function maintains a double ended queue
 //of processes that are candidates for scheduling (the ready variable) and always schedules
 //the process with the shortest total time needed, if available (i.e., if the list has members)
-int ShortestProcessNext(const int& curTime, vector<Process>& procList, const int& timeQuantum) {
+int ShortestProcessNext(const int& curTime, vector<Process>& procList) {
     int shortestIndex = -1;
     int shortestBurst = INT_MAX;
     static int curRunning = -1;
     if ( curRunning == -1 || !procList[curRunning].isDone)
     {
         for (size_t i = 0; i < procList.size(); i++) {
-        if (procList[i].startTime <= curTime && !procList[i].isDone && procList[i].totalTimeNeeded < shortestBurst) {
-            shortestIndex = i;
-            shortestBurst = procList[i].totalTimeNeeded;
+            if (procList[i].startTime <= curTime && !procList[i].isDone && procList[i].totalTimeNeeded < shortestBurst) {
+                shortestIndex = i;
+                shortestBurst = procList[i].totalTimeNeeded;
+            }
         }
     }
-        
-    }
-    cout << "shortestIndex: " << shortestIndex << endl;
 
     curRunning = shortestIndex;
 

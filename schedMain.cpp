@@ -107,7 +107,7 @@ int main(int argc, char* argv[])
                 // TODO set procIdx to the proper index for the next process to be scheduled using SPN
 
 				//////////////////////////////
-                procIdx = ShortestProcessNext(curTime, procList, timeQuantum);
+                procIdx = ShortestProcessNext(curTime, procList);
                 break;
 
             //Shortest Remaining Time
