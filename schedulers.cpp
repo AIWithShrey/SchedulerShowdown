@@ -74,15 +74,8 @@ int ShortestProcessNext(const int& curTime, vector<Process>& procList, const int
             shortestBurst = procList[i].totalTimeNeeded;
         }
     }
-    if (shortestIndex == -1) {
-        return -1;
-    }
-    if (shortestBurst <= timeQuantum) {
-        procList[shortestIndex].isDone = true;
-        return curTime + shortestBurst;
-    }
-    procList[shortestIndex].totalTimeNeeded -= timeQuantum;
-    return curTime + timeQuantum;
+
+    return shortestIndex;
 }
 
 //Shortest Remaining Time scheduler implementation. In general, this function maintains a double ended queue
