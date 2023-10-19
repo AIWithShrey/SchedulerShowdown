@@ -68,16 +68,18 @@ int ShortestProcessNext(const int& curTime, vector<Process>& procList) {
     int shortestIndex = -1;
     int shortestBurst = INT_MAX;
     static int curRunning = -1;
+    /*
     if ( curRunning == -1 || !procList[curRunning].isDone)
     {
+    }*/
+
+
         for (size_t i = 0; i < procList.size(); i++) {
             if (procList[i].startTime <= curTime && !procList[i].isDone && procList[i].totalTimeNeeded < shortestBurst) {
                 shortestIndex = i;
                 shortestBurst = procList[i].totalTimeNeeded;
             }
         }
-    }
-
     cerr << shortestIndex << endl;
 
     curRunning = shortestIndex;
