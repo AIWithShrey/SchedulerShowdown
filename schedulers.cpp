@@ -1,5 +1,5 @@
 #include "schedulers.h"
-#define INT_MAX 2147483647
+#include <climits>
 
 //Round Robin scheduler implementation. In general, this function maintains a double ended queue
 //of processes that are candidates for scheduling (the ready variable) and always schedules
@@ -63,25 +63,24 @@ int RoundRobin(const int& curTime, const vector<Process>& procList, const int& t
 //Shortest Process Next scheduler implementation. In general, this function maintains a double ended queue
 //of processes that are candidates for scheduling (the ready variable) and always schedules
 //the process with the shortest total time needed, if available (i.e., if the list has members)
-int ShortestProcessNext(const int& curTime, vector<Process>& procList, const int& timeQuantum)
-{
+int ShortestProcessNext(int curTime, vector<Process>& procList, int timeQuantum) {
     static int timeToNextSched = timeQuantum; // keeps track of when we should actually schedule a new process
-    static deque<int> ready; // keeps track of the processes that are ready to be scheduled
+    static vector<int> ready; // keeps track of the processes that are ready to be scheduled
 
     int idx = -1;
     int shortestTime = INT_MAX;
 
     // First, look through the process list and find any processes that are newly ready and
-    // add them to the back of the ready queue.
-    for (int i = 0, i_end = procList.size(); i < i_end; ++i) {
-        if (procList[i].startTime == curTime) {
+    // add them to the ready vector.
+    for (int i = 0; i < procList.size(); ++i) {
+        if (procList[i].startTime == curTime && !procList[i].isDone) {
             ready.push_back(i);
         }
     }
 
-    // Now, find the process with the shortest remaining time in the ready queue.
+    // Find the process with the shortest remaining time in the ready vector.
     for (int i : ready) {
-        if (procList[i].totalTimeNeeded < shortestTime && !procList[i].isDone) {
+        if (procList[i].totalTimeNeeded < shortestTime) {
             idx = i;
             shortestTime = procList[i].totalTimeNeeded;
         }
@@ -92,11 +91,10 @@ int ShortestProcessNext(const int& curTime, vector<Process>& procList, const int
         --procList[idx].totalTimeNeeded;
         if (procList[idx].totalTimeNeeded == 0) {
             procList[idx].isDone = true;
-            ready.pop_front();
+            // Remove the completed process from the ready vector.
+            ready.erase(std::remove(ready.begin(), ready.end(), idx), ready.end());
             timeToNextSched = timeQuantum;
         } else if (timeToNextSched == 0) {
-            ready.push_back(idx);
-            ready.pop_front();
             timeToNextSched = timeQuantum;
         } else {
             --timeToNextSched;
