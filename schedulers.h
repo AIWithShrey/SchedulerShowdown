@@ -53,8 +53,8 @@ int RoundRobin(const int& curTime, const vector<Process>& procList, const int& t
 
 int ShortestProcessNext(const int& curTime, vector<Process>& procList);
 
-int ShortestRemainingTime(const int& curTime, const vector<Process>& procList, const int& timeQuantum);
+int ShortestRemainingTime(const int& curTime, vector<Process>& procList);
 
-int HighestResponseRatioNext(const int& curTime, const vector<Process>& procList, const int& timeQuantum);
+int HighestResponseRatioNext(const int& curTime, const vector<Process>& processList);
 
 #endif

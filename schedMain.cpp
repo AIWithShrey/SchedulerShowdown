@@ -117,7 +117,7 @@ int main(int argc, char* argv[])
                 // TODO set procIdx to the proper index for the next process to be scheduled using SRT
 
 				//////////////////////////////
-                procIdx = ShortestRemainingTime(curTime, procList, timeQuantum);
+                procIdx = ShortestRemainingTime(curTime, procList);
                 break;
 
             //Highest Response Ratio Next
@@ -127,7 +127,7 @@ int main(int argc, char* argv[])
                 // TODO set procIdx to the proper index for the next process to be scheduled using HRRN
 
 				//////////////////////////////
-                procIdx = HighestResponseRatioNext(curTime, procList, timeQuantum);
+                procIdx = HighestResponseRatioNext(curTime, procList);
                 break;
         }
 
