@@ -67,25 +67,20 @@ int RoundRobin(const int& curTime, const vector<Process>& procList, const int& t
 int ShortestProcessNext(const int& curTime, vector<Process>& procList) {
     int shortestIndex = -1;
     int shortestTimeNeeded = INT_MAX;
-    string curRunning = "";
-    /*
-    if ( curRunning == -1 || !procList[curRunning].isDone)
+    static int curRunning = -1;
+    
+    if ( curRunning == -1 || procList[curRunning].isDone)
     {
-    }*/
-
-
         for (size_t i = 0; i < procList.size(); i++) {
             if (procList[i].startTime <= curTime && !procList[i].isDone && procList[i].totalTimeNeeded < shortestTimeNeeded) {
                 shortestIndex = i;
-                curRunning = procList[i].id;
                 shortestTimeNeeded = procList[i].totalTimeNeeded;
-                cerr << curRunning << endl;
             }
         }
-    //cerr << shortestIndex << endl;
+    }
 
-
-    return shortestIndex;
+    if(shortestIndex != -1) curRunning = shortestIndex;
+    return curRunning;
 }
 
 //Shortest Remaining Time scheduler implementation. In general, this function maintains a double ended queue
