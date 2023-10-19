@@ -66,7 +66,8 @@ int RoundRobin(const int& curTime, const vector<Process>& procList, const int& t
 //the process with the shortest total time needed, if available (i.e., if the list has members)
 int ShortestProcessNext(const int& curTime, vector<Process>& procList) {
     int shortestIndex = -1;
-    int shortestBurst = INT_MAX;
+    int shortestTimeNeeded = INT_MAX;
+    string curRunning = "";
     /*
     if ( curRunning == -1 || !procList[curRunning].isDone)
     {
@@ -74,9 +75,11 @@ int ShortestProcessNext(const int& curTime, vector<Process>& procList) {
 
 
         for (size_t i = 0; i < procList.size(); i++) {
-            if (procList[i].startTime <= curTime && !procList[i].isDone && procList[i].totalTimeNeeded < shortestBurst) {
+            if (procList[i].startTime <= curTime && !procList[i].isDone && procList[i].totalTimeNeeded < shortestTimeNeeded) {
                 shortestIndex = i;
-                shortestBurst = procList[i].totalTimeNeeded;
+                curRunning = procList[i].id;
+                shortestTimeNeeded = procList[i].totalTimeNeeded;
+                cerr << curRunning << endl;
             }
         }
     //cerr << shortestIndex << endl;
