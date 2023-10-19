@@ -67,6 +67,7 @@ int RoundRobin(const int& curTime, const vector<Process>& procList, const int& t
 int ShortestProcessNext(const int& curTime, vector<Process>& procList, const int& timeQuantum) {
     int shortestIndex = -1;
     int shortestBurst = INT_MAX;
+
     for (size_t i = 0; i < procList.size(); i++) {
         if (procList[i].startTime <= curTime && !procList[i].isDone && procList[i].totalTimeNeeded < shortestBurst) {
             shortestIndex = i;
