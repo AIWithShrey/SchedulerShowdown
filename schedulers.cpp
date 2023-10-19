@@ -78,6 +78,8 @@ int ShortestProcessNext(const int& curTime, vector<Process>& procList, const int
     }
         
     }
+    cout << "shortestIndex: " << shortestIndex << endl;
+
     curRunning = shortestIndex;
 
     return curRunning;
